@@ -4,21 +4,21 @@ require 'pry'
 
 class Scraper
 
-        def self.scrape_index_page(index_url)
-          html = open(index_url)
-          doc = Nokogiri::HTML(html)
-          students = []
-          doc.css("div.roster-cards-container").each do |all_students|
-            all_students.css(".student-card").each do |student|
-              name = student.css('.student-name').text
-              location = student.css(".student-location").text
-              profile_url = student.css("a").attr("href").text
-              # literal hash constructor:
-              students << {name: name, location: location, profile_url: profile_url}
-            end
-           end
-           students
-         end
+  def self.scrape_index_page(index_url)
+    html = open(index_url)
+    doc = Nokogiri::HTML(html)
+    students = []
+    doc.css("div.roster-cards-container").each do |all_students|
+      all_students.css(".student-card").each do |student|
+        name = student.css('.student-name').text
+        location = student.css(".student-location").text
+        profile_url = student.css("a").attr("href").text
+        # literal hash constructor:
+        students << {name: name, location: location, profile_url: profile_url}
+      end
+     end
+     students
+   end
 
 
 
